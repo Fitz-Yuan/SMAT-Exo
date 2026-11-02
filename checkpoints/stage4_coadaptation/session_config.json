@@ -1,0 +1,397 @@
+{
+    "total_timesteps": 3000000,
+    "logger_params": {
+        "logging_frequency": 1,
+        "evaluate_frequency": 999999999
+    },
+    "env_params": {
+        "reward_keys_and_weights": {
+            "forward_reward": 1.5,
+            "muscle_activation_penalty": 0.15,
+            "muscle_activation_diff_penalty": 0.05,
+            "hip_muscle_activation_penalty": 5.0,
+            "exo_assistance_power_reward": 4.0,
+            "exo_action_rate_penalty": 1.0,
+            "joint_constraint_force_penalty": 0.5,
+            "foot_force_penalty": 0.3,
+            "end_effector_imitation_reward": 0.0,
+            "qpos_imitation_rewards": {
+                "pelvis_ty": 0.25,
+                "pelvis_tilt": 0.2,
+                "pelvis_list": 0.05,
+                "pelvis_rotation": 0.05,
+                "hip_flexion_l": 0.0,
+                "hip_flexion_r": 0.0,
+                "hip_adduction_l": 0.05,
+                "hip_adduction_r": 0.05,
+                "hip_rotation_l": 0.03,
+                "hip_rotation_r": 0.03,
+                "knee_angle_l": 0.2,
+                "knee_angle_r": 0.2,
+                "ankle_angle_l": 0.15,
+                "ankle_angle_r": 0.15,
+                "mtp_angle_l": 0.02,
+                "mtp_angle_r": 0.02
+            },
+            "qvel_imitation_rewards": {
+                "pelvis_tx": 0.8,
+                "pelvis_ty": 0.15,
+                "pelvis_tz": 0.1,
+                "pelvis_tilt": 0.1,
+                "pelvis_list": 0.03,
+                "pelvis_rotation": 0.03,
+                "hip_flexion_l": 0.0,
+                "hip_flexion_r": 0.0,
+                "hip_adduction_l": 0.03,
+                "hip_adduction_r": 0.03,
+                "hip_rotation_l": 0.02,
+                "hip_rotation_r": 0.02,
+                "knee_angle_l": 0.1,
+                "knee_angle_r": 0.1,
+                "ankle_angle_l": 0.08,
+                "ankle_angle_r": 0.08,
+                "mtp_angle_l": 0.01,
+                "mtp_angle_r": 0.01
+            }
+        },
+        "env_id": "myoAssistLegImitationExo-v0",
+        "num_envs": 32,
+        "seed": 42,
+        "safe_height": 0.7,
+        "control_framerate": 50,
+        "physics_sim_framerate": 1200,
+        "min_target_velocity": 1.25,
+        "max_target_velocity": 1.25,
+        "min_target_velocity_period": 2,
+        "max_target_velocity_period": 10,
+        "custom_max_episode_steps": 1000,
+        "model_path": "../models/26muscle_3D/myoLeg26_hipexo.xml",
+        "prev_trained_policy_path": "results/<stage 3 session>/trained_models/model_<step>",
+        "reference_data_path": "reference_data/short_reference_gait.npz",
+        "enable_lumbar_joint": false,
+        "lumbar_joint_fixed_angle": -0.13,
+        "lumbar_joint_damping_value": 0.05,
+        "observation_joint_pos_keys": [
+            "ankle_angle_l",
+            "ankle_angle_r",
+            "hip_adduction_l",
+            "hip_adduction_r",
+            "hip_flexion_l",
+            "hip_flexion_r",
+            "hip_rotation_l",
+            "hip_rotation_r",
+            "knee_angle_l",
+            "knee_angle_r",
+            "mtp_angle_l",
+            "mtp_angle_r",
+            "pelvis_list",
+            "pelvis_rotation",
+            "pelvis_tilt",
+            "pelvis_ty",
+            "exo_right_abduction",
+            "exo_left_abduction"
+        ],
+        "observation_joint_vel_keys": [
+            "ankle_angle_l",
+            "ankle_angle_r",
+            "hip_adduction_l",
+            "hip_adduction_r",
+            "hip_flexion_l",
+            "hip_flexion_r",
+            "hip_rotation_l",
+            "hip_rotation_r",
+            "knee_angle_l",
+            "knee_angle_r",
+            "mtp_angle_l",
+            "mtp_angle_r",
+            "pelvis_list",
+            "pelvis_rotation",
+            "pelvis_tilt",
+            "pelvis_tx",
+            "pelvis_ty",
+            "pelvis_tz",
+            "exo_right_abduction",
+            "exo_left_abduction"
+        ],
+        "observation_sensor_keys": [
+            "r_foot",
+            "l_foot",
+            "r_toes",
+            "l_toes"
+        ],
+        "joint_limit_sensor_keys": [
+            "r_knee_sensor",
+            "l_knee_sensor",
+            "r_hip_sensor",
+            "l_hip_sensor",
+            "r_ankle_sensor",
+            "l_ankle_sensor",
+            "r_mtp_sensor",
+            "l_mtp_sensor"
+        ],
+        "terrain_type": "flat",
+        "terrain_params": "",
+        "exo_history_input_frames": 2,
+        "exo_history_output_frames": 3,
+        "flag_random_ref_index": true,
+        "out_of_trajectory_threshold": 0.5,
+        "reference_data_keys": [
+            "ankle_angle_l",
+            "ankle_angle_r",
+            "hip_adduction_l",
+            "hip_adduction_r",
+            "hip_flexion_l",
+            "hip_flexion_r",
+            "hip_rotation_l",
+            "hip_rotation_r",
+            "knee_angle_l",
+            "knee_angle_r",
+            "mtp_angle_l",
+            "mtp_angle_r",
+            "pelvis_list",
+            "pelvis_rotation",
+            "pelvis_tilt",
+            "pelvis_tx",
+            "pelvis_ty",
+            "pelvis_tz"
+        ],
+        "exo_assistance_reward_type": "power"
+    },
+    "evaluate_param_list": [
+        {
+            "num_timesteps": 300,
+            "min_target_velocity": 1.25,
+            "max_target_velocity": 1.25,
+            "target_velocity_period": 2,
+            "velocity_mode": "UNIFORM",
+            "cam_type": "follow",
+            "cam_distance": 2.5,
+            "visualize_activation": true
+        }
+    ],
+    "policy_params": {
+        "custom_policy_params": {
+            "reset_shared_net_after_load": false,
+            "reset_policy_net_after_load": false,
+            "reset_value_net_after_load": false,
+            "reset_exo_only_after_load": false,
+            "reset_human_only_after_load": false,
+            "net_arch": {
+                "human_actor": [
+                    256,
+                    128
+                ],
+                "exo_actor": [
+                    128,
+                    64
+                ],
+                "common_critic": [
+                    256,
+                    128
+                ]
+            },
+            "log_std_init": 0.0,
+            "net_indexing_info": {
+                "human_actor": {
+                    "observation": [
+                        {
+                            "type": "range",
+                            "range": [
+                                0,
+                                16
+                            ],
+                            "comment": "16 qpos: human joints only"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                18,
+                                36
+                            ],
+                            "comment": "18 qvel: human joints only"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                38,
+                                51
+                            ],
+                            "comment": "13 right muscle activation"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                51,
+                                64
+                            ],
+                            "comment": "13 left muscle activation"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                64,
+                                68
+                            ],
+                            "comment": "4 foot force"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                68,
+                                69
+                            ],
+                            "comment": "1 target velocity"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                69,
+                                71
+                            ],
+                            "comment": "2 normalized exo torques [R, L]"
+                        }
+                    ],
+                    "action": [
+                        {
+                            "type": "range_mapping",
+                            "range_net": [
+                                0,
+                                13
+                            ],
+                            "range_action": [
+                                0,
+                                13
+                            ],
+                            "comment": "13 right muscle activation outputs"
+                        },
+                        {
+                            "type": "range_mapping",
+                            "range_net": [
+                                13,
+                                26
+                            ],
+                            "range_action": [
+                                13,
+                                26
+                            ],
+                            "comment": "13 left muscle activation outputs"
+                        }
+                    ]
+                },
+                "exo_actor": {
+                    "observation": [
+                        {
+                            "type": "range",
+                            "range": [
+                                71,
+                                89
+                            ],
+                            "comment": "18 exo history: 2 past inputs (8) + current input (4) + 3 past outputs (6)"
+                        }
+                    ],
+                    "action": [
+                        {
+                            "type": "range_mapping",
+                            "range_net": [
+                                0,
+                                2
+                            ],
+                            "range_action": [
+                                26,
+                                28
+                            ],
+                            "comment": "2 exo motor outputs"
+                        }
+                    ]
+                },
+                "common_critic": {
+                    "observation": [
+                        {
+                            "type": "range",
+                            "range": [
+                                0,
+                                18
+                            ],
+                            "comment": "18 qpos (full state including exo)"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                18,
+                                38
+                            ],
+                            "comment": "20 qvel (full state including exo)"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                38,
+                                51
+                            ],
+                            "comment": "13 right muscle activation"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                51,
+                                64
+                            ],
+                            "comment": "13 left muscle activation"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                64,
+                                68
+                            ],
+                            "comment": "4 foot force"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                68,
+                                69
+                            ],
+                            "comment": "1 target velocity"
+                        },
+                        {
+                            "type": "range",
+                            "range": [
+                                69,
+                                89
+                            ],
+                            "comment": "exo_torque (2) + exo_history (18)"
+                        }
+                    ]
+                }
+            },
+            "human_observation_indices": [],
+            "exo_observation_indices": [],
+            "human_action_size": 0,
+            "exo_action_size": 0,
+            "freeze_human_actor": false,
+            "freeze_exo_actor": false,
+            "exo_symmetric_forward": true
+        }
+    },
+    "ppo_params": {
+        "learning_rate": 3e-05,
+        "n_steps": 2048,
+        "batch_size": 16384,
+        "n_epochs": 20,
+        "gamma": 0.99,
+        "gae_lambda": 0.95,
+        "clip_range": 0.15,
+        "clip_range_vf": 100,
+        "ent_coef": 0.003,
+        "vf_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "use_sde": false,
+        "sde_sample_freq": -1,
+        "target_kl": 0.01,
+        "device": "cuda"
+    },
+    "auto_reward_adjust_params": {
+        "learning_rate": 0.0
+    }
+}

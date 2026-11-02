@@ -1,0 +1,32 @@
+SMAT-Exo
+Copyright 2026 Yifei Yuan, Ghaith Androwis, Xianlian Zhou
+
+This project is derived from MyoAssist (https://github.com/neumovelab/myoassist,
+commit c108837), Copyright NeuMove Lab, Northeastern University, licensed under the
+Apache License, Version 2.0. MyoAssist includes MyoSuite
+(https://github.com/MyoHub/myosuite), Copyright (c) Facebook, Inc. and its affiliates,
+licensed under the Apache License, Version 2.0.
+
+Changes relative to MyoAssist commit c108837:
+
+Modified files
+  rl_train/run_train.py                         parent-session tracking, inherited train logs, checkpoint path check
+  rl_train/run_policy_eval.py                   evaluation of a chosen checkpoint, exo torque report
+  rl_train/envs/environment_handler.py          cross-dimension policy loading (extended observations), exo actor re-initialization
+  rl_train/envs/myoassist_leg_base.py           hip-muscle, exo assistance and exo action-rate rewards; target-velocity sampling fix
+  rl_train/envs/myoassist_leg_imitation.py      reward bookkeeping for the new terms
+  rl_train/envs/myoassist_leg_imitation_exo.py  exo torque and exo history observations
+  rl_train/train/policies/rl_agent_base.py      actor freezing
+  rl_train/train/policies/rl_agent_exo.py       separate human/exo actors, symmetric exo forward, network resets
+  rl_train/train/train_configs/config.py        new reward weights and exo options
+  rl_train/train/train_configs/config_imiatation_exo.py  new policy options
+  rl_train/analyzer/*.py                        exo torque and power analysis
+  rl_train/utils/*.py                           train-log handling
+  models/26muscle_3D/myoLeg26_hipexo*.xml       26-muscle model with an attached hip exoskeleton
+
+Added files
+  configs/, checkpoints/, hardware/exo_policy.py
+
+Removed from the MyoAssist distribution
+  ctrl_optim/, docs/, myosuite/simhive/, myosuite/agents/, myosuite/tests/,
+  and models, meshes and tutorials not used by SMAT
