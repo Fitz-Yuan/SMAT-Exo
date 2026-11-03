@@ -28,7 +28,7 @@ pip install -e .
 
 - Tested with Python 3.11 on Ubuntu 22.04.
 - Run all commands from `rl_train/`.
-- No display? Set `MUJOCO_GL=egl` (or `osmesa`) for the evaluation videos.
+- On a machine without a display, set `MUJOCO_GL=egl` (or `osmesa`) to render the evaluation videos.
 
 ## Training
 
